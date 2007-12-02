@@ -1,0 +1,6 @@
+ORIG_PN=dbus-python
+inherit pygtk
+
+DESCRIPTION="Python D-Bus bindings"
+HOMEPAGE="http://www.freedesktop.org/wiki/Software/DBusBindings"
+SRC_URI="http://dbus.freedesktop.org/releases/${ORIG_PN}/${ORIG_PN}-${PV}.tar.gz"
