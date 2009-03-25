@@ -3,22 +3,23 @@ python-dbus
 Python D-Bus bindings
 
 Runtime requirements:
-  cygwin-1.5.25-15
-  glib2-2.16.4-1
-  libdbus-glib_1_2-0.76-1
-  libdbus1_3-1.2.1-1
-  python-2.5.2-3
+  cygwin-1.7.0-44
+  libdbus-glib_1_2-0.80-10
+  libdbus1_3-1.2.12-10
+  libgcc1-4.3.2-2
+  libglib2.0_0-2.20.0-1
+  python-2.5.4-10
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf2.5-2.61-1
-  automake1.10-1.10.1-1
-  binutils-20080523-2
-  cygport-0.3.12-1
-  gawk-3.1.6-1
-  gcc-core-3.4.4-3
-  libtool-2.2.2-2
-  make-3.81-1
+  autoconf2.5-2.63-10
+  automake1.10-1.10.1-10
+  binutils-20080624-2
+  cygport-0.9.6-1
+  gawk-3.1.6-2
+  gcc4-core-4.3.2-2
+  libtool-2.2.6a-1
+  make-3.81-2
   pkg-config-0.23a-2
   sed-4.1.5-2
 
@@ -105,35 +106,22 @@ Files included in the binary package:
   /usr/lib/python2.5/site-packages/dbus_bindings.py
   /usr/lib/python2.5/site-packages/dbus_bindings.pyc
   /usr/lib/python2.5/site-packages/dbus_bindings.pyo
-  /usr/share/doc/python-dbus-0.83.0/API_CHANGES.txt
-  /usr/share/doc/python-dbus-0.83.0/AUTHORS
-  /usr/share/doc/python-dbus-0.83.0/COPYING
-  /usr/share/doc/python-dbus-0.83.0/ChangeLog
-  /usr/share/doc/python-dbus-0.83.0/HACKING.txt
-  /usr/share/doc/python-dbus-0.83.0/INSTALL
-  /usr/share/doc/python-dbus-0.83.0/NEWS
-  /usr/share/doc/python-dbus-0.83.0/README
-  /usr/share/doc/python-dbus-0.83.0/TODO
-  /usr/share/doc/python-dbus-0.83.0/tutorial.txt
+  /usr/share/doc/python-dbus/API_CHANGES.txt
+  /usr/share/doc/python-dbus/AUTHORS
+  /usr/share/doc/python-dbus/COPYING
+  /usr/share/doc/python-dbus/ChangeLog
+  /usr/share/doc/python-dbus/HACKING.txt
+  /usr/share/doc/python-dbus/NEWS
+  /usr/share/doc/python-dbus/README
+  /usr/share/doc/python-dbus/TODO
+  /usr/share/doc/python-dbus/tutorial.txt
 
 ------------------
 
 Port Notes:
 
------ version 0.83.0-1 -----
-Version bump.
-
------ version 0.82.3-1 -----
-Version bump.
-
------ version 0.81.1-1 -----
-Version bump.
-
------ version 0.81.0-1 -----
-Version bump, built for python-2.5.
-
------ version 0.80.2-1 -----
-Initial release for Cygwin.
+----- version 0.83.0-10 -----
+Initial release for Cygwin 1.7.
 
 
 Cygwin port maintained by:
