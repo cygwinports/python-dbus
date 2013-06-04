@@ -1,12 +1,17 @@
-ORIG_PN=dbus-python
 inherit pygtk
 
 NAME="python-dbus"
-VERSION=1.1.1
-RELEASE=2
+VERSION=1.2.0
+RELEASE=1
 CATEGORY="Python"
 DESCRIPTION="Python D-Bus bindings"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/DBusBindings"
-SRC_URI="http://dbus.freedesktop.org/releases/${ORIG_PN}/${ORIG_PN}-${PV}.tar.gz"
+SRC_URI="http://dbus.freedesktop.org/releases/dbus-python/dbus-python-${VERSION}.tar.gz"
+SRC_DIR="dbus-python-${VERSION}"
+
+PKG_NAMES="${NAME} ${NAME}-devel"
+python_dbus_CONTENTS="${PYTHON_SITELIB#/} usr/share/doc/"
+python_dbus_devel_REQUIRES=${NAME}
+python_dbus_devel_CONTENTS="usr/include/ usr/lib/pkgconfig/"
 
 CYGCONF_ARGS="--disable-api-docs --disable-html-docs"
