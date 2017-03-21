@@ -1,17 +1,42 @@
-inherit pygtk
+inherit python2 python3
 
 NAME="python-dbus"
 VERSION=1.2.4
-RELEASE=1
+RELEASE=2
 CATEGORY="Python"
-DESCRIPTION="Python D-Bus bindings"
+SUMMARY="Python D-Bus bindings"
+DESCRIPTION="dbus-python is a binding for libdbus, the reference implementation
+of D-Bus. For compatibility reasons, its API involves a lot of type-guessing."
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/DBusBindings"
 SRC_URI="http://dbus.freedesktop.org/releases/dbus-python/dbus-python-${VERSION}.tar.gz"
 SRC_DIR="dbus-python-${VERSION}"
 
-PKG_NAMES="${NAME} ${NAME}-devel"
-python_dbus_CONTENTS="${PYTHON_SITELIB#/} usr/share/doc/"
-python_dbus_devel_REQUIRES=${NAME}
+PKG_NAMES="python2-dbus python3-dbus ${NAME}-devel"
+python2_dbus_OBSOLETES=${NAME}
+python2_dbus_DOCS="AUTHORS ChangeLog COPYING NEWS README doc/*.txt"
+python2_dbus_CONTENTS=${PYTHON2_SITELIB#/}
+python3_dbus_DOCS="AUTHORS ChangeLog COPYING NEWS README doc/*.txt"
+python3_dbus_CONTENTS=${PYTHON3_SITELIB#/}
 python_dbus_devel_CONTENTS="usr/include/ usr/lib/pkgconfig/"
 
-CYGCONF_ARGS="--disable-api-docs --disable-html-docs"
+CYGCONF_ARGS="--disable-api-docs --disable-html-docs --disable-static"
+
+src_compile() {
+	cd ${S}
+	cygautoreconf
+	mkdir -p ${B}/py2
+	cd ${B}/py2
+	cygconf PYTHON=${PYTHON2}
+	cygmake LIBS="-no-undefined ${LIBPYTHON2}"
+	mkdir -p ${B}/py3
+	cd ${B}/py3
+	cygconf PYTHON=${PYTHON3}
+	cygmake LIBS="-no-undefined ${LIBPYTHON3}"
+}
+
+src_install() {
+	cd ${B}/py2
+	cyginstall docdir=
+	cd ${B}/py3
+	cyginstall docdir=
+}
