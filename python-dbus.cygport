@@ -18,6 +18,7 @@ python2_dbus_CONTENTS=${PYTHON2_SITELIB#/}
 python3_dbus_DOCS="AUTHORS ChangeLog COPYING NEWS README doc/*.txt"
 python3_dbus_CONTENTS=${PYTHON3_SITELIB#/}
 python_dbus_devel_CONTENTS="usr/include/ usr/lib/pkgconfig/"
+python_dbus_debuginfo_OBSOLETES="python3-dbus-debuginfo"
 
 CYGCONF_ARGS="--disable-api-docs --disable-html-docs --disable-static"
 
