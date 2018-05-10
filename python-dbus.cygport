@@ -1,8 +1,8 @@
 inherit python2 python3
 
 NAME="python-dbus"
-VERSION=1.2.4
-RELEASE=2
+VERSION=1.2.8
+RELEASE=1
 CATEGORY="Python"
 SUMMARY="Python D-Bus bindings"
 DESCRIPTION="dbus-python is a binding for libdbus, the reference implementation
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.freedesktop.org/wiki/Software/DBusBindings"
 SRC_URI="http://dbus.freedesktop.org/releases/dbus-python/dbus-python-${VERSION}.tar.gz"
 SRC_DIR="dbus-python-${VERSION}"
 
-PKG_NAMES="python2-dbus python3-dbus ${NAME}-devel"
+PKG_NAMES="python2-dbus python3-dbus ${NAME}-devel ${NAME}-doc"
 python2_dbus_OBSOLETES=${NAME}
 python2_dbus_DOCS="AUTHORS ChangeLog COPYING NEWS README doc/*.txt"
 python2_dbus_CONTENTS=${PYTHON2_SITELIB#/}
@@ -19,6 +19,9 @@ python3_dbus_DOCS="AUTHORS ChangeLog COPYING NEWS README doc/*.txt"
 python3_dbus_CONTENTS=${PYTHON3_SITELIB#/}
 python_dbus_devel_CONTENTS="usr/include/ usr/lib/pkgconfig/"
 python_dbus_debuginfo_OBSOLETES="python3-dbus-debuginfo"
+python_dbus_doc_CATEGORY="Doc"
+python_dbus_doc_CONTENTS="usr/share/doc/python-dbus/html/"
+PKG_IGNORE="usr/share/doc/python-dbus/[ACNR]*"
 
 CYGCONF_ARGS="--disable-api-docs --disable-html-docs --disable-static"
 
