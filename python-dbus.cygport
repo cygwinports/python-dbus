@@ -1,4 +1,4 @@
-inherit python2 python3
+inherit python-wheel
 
 NAME="python-dbus"
 VERSION=1.2.8
@@ -10,37 +10,31 @@ of D-Bus. For compatibility reasons, its API involves a lot of type-guessing."
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/DBusBindings"
 SRC_URI="http://dbus.freedesktop.org/releases/dbus-python/dbus-python-${VERSION}.tar.gz"
 SRC_DIR="dbus-python-${VERSION}"
+PATCH_URI="1.2.8-no-undefined.patch"
 
-PKG_NAMES="python2-dbus python3-dbus ${NAME}-devel ${NAME}-doc"
-python2_dbus_OBSOLETES=${NAME}
-python2_dbus_DOCS="AUTHORS ChangeLog COPYING NEWS README doc/*.txt"
-python2_dbus_CONTENTS=${PYTHON2_SITELIB#/}
-python3_dbus_DOCS="AUTHORS ChangeLog COPYING NEWS README doc/*.txt"
-python3_dbus_CONTENTS=${PYTHON3_SITELIB#/}
+PKG_NAMES+=" python-dbus-devel"
 python_dbus_devel_CONTENTS="usr/include/ usr/lib/pkgconfig/"
-python_dbus_debuginfo_OBSOLETES="python3-dbus-debuginfo"
-python_dbus_doc_CATEGORY="Doc"
-python_dbus_doc_CONTENTS="usr/share/doc/python-dbus/html/"
-PKG_IGNORE="usr/share/doc/python-dbus/[ACNR]*"
+#python_dbus_doc_CATEGORY="Doc"
+#python_dbus_doc_CONTENTS="usr/share/doc/python-dbus/html/"
+PKG_IGNORE="usr/share/doc/python-dbus-devel/"
 
 CYGCONF_ARGS="--disable-api-docs --disable-html-docs --disable-static"
 
 src_compile() {
 	cd ${S}
 	cygautoreconf
-	mkdir -p ${B}/py2
-	cd ${B}/py2
-	cygconf PYTHON=${PYTHON2}
-	cygmake LIBS="-no-undefined ${LIBPYTHON2}"
-	mkdir -p ${B}/py3
-	cd ${B}/py3
-	cygconf PYTHON=${PYTHON3}
-	cygmake LIBS="-no-undefined ${LIBPYTHON3}"
+	cd ${B}
+	lndirs
+	python_wheel_compile
 }
 
 src_install() {
-	cd ${B}/py2
-	cyginstall docdir=
-	cd ${B}/py3
-	cyginstall docdir=
+	cd ${B}
+	python_wheel_install
+
+	includeinto dbus-1.0/dbus
+	doinclude ${S}/include/dbus/dbus-python.h
+
+	dopkgconfig build/temp.cygwin-*-2.7/dbus-python.pc
+	sed -i -e '/^prefix=/c prefix=/usr' ${D}/usr/lib/pkgconfig/dbus-python.pc
 }

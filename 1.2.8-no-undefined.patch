@@ -1,0 +1,35 @@
+--- origsrc/dbus-python-1.2.8/Makefile.am	2018-05-04 12:14:11.000000000 -0400
++++ src/dbus-python-1.2.8/Makefile.am	2019-03-24 14:56:49.368171900 -0400
+@@ -56,8 +56,10 @@ AM_LDFLAGS = \
+ pymod_ldflags = \
+ 	-module \
+ 	-avoid-version \
++	-no-undefined \
+ 	$(NULL)
+ pymod_libadd = \
++	$(PYTHON_LIBS) \
+ 	$(NULL)
+ 
+ if WINDOWS
+@@ -65,12 +67,8 @@ if WINDOWS
+ # against the Python DLL), and Python expects extensions to be *.pyd
+ # instead of *.dll
+ pymod_ldflags += \
+-	-no-undefined \
+ 	-shrext ".pyd" \
+ 	$(NULL)
+-pymod_libadd += \
+-	$(PYTHON_LIBS) \
+-	$(NULL)
+ endif
+ 
+ pyexec_LTLIBRARIES = \
+@@ -147,7 +145,7 @@ test_dbus_py_test_la_LDFLAGS = \
+ 	$(AM_LDFLAGS) \
+ 	-rpath $(installed_testdir) \
+ 	$(NULL)
+-test_dbus_py_test_la_LIBADD = $(DBUS_LIBS)
++test_dbus_py_test_la_LIBADD = $(DBUS_LIBS) $(PYTHON_LIBS)
+ test_dbus_py_test_la_SOURCES = \
+ 	include/dbus/dbus-python.h \
+ 	test/dbus_py_test.c \
